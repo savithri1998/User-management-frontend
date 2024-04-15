@@ -31,25 +31,21 @@ const DefaultHeader = React.lazy(() => import('./DefaultHeader'));
 
 class DefaultLayout extends Component {
 state={
-  // menus: { items: [] }
   menus:navigation
 }
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   signOut(e) {
-    // console.log("hello");
+    localStorage.clear();
     e.preventDefault()
     this.props.history.push('/login')
   }
-  // componentDidMount() {
-  //   let token = getCookie('token');
-  //   if (token === null || token === "" || (token && token.length < 10)) {
-  //     this.props.history.push("/login");
-  //   }
-  //   else{
-  //     this.sidemenuHide();
-  //   }
-  // }
+  componentDidMount() {
+   
+    if (localStorage.getItem('user') === null || localStorage.getItem('user') === "") {
+      this.props.history.push("/login");
+    }
+  }
  
   render() {
     return (

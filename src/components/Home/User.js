@@ -14,8 +14,6 @@ import "./Home.css";
 export default class User extends Component {
   state = {
     users: [],
-    currentPage: 1,
-    totalDocs: "0",
     selectedRows: []
   }
   componentDidMount() {
@@ -23,13 +21,13 @@ export default class User extends Component {
   }
   dateOfBirth = (cell, row) => {
     const formattedDate = moment(cell).format('YYYY-MM-DD');
-    return formattedDate
+    return formattedDate;
   }
   getAllUsers = () => {
     Axios.get("user/getAll/true").then((res) => {
       if (res.status == 200) {
         this.setState({
-          users: res.data,
+          users: res.data
         })
       }
       else {
@@ -61,7 +59,7 @@ export default class User extends Component {
       allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
-        Axios.delete(`user/delete/${id}/false`)
+        Axios.delete(`enabledisable/singleuser/${id}/false`)
           .then((response) => {
             if (response.status === 200) {
               toast.success("User deleted successfully..!");
@@ -70,7 +68,7 @@ export default class User extends Component {
               }, 1000)
             }
           }).catch((error) => {
-            toast.error("Unable to delete Cases");
+            toast.error("Unable to delete Users");
           })
       }
     })
@@ -121,7 +119,7 @@ export default class User extends Component {
     })
     let payload = {};
     payload.ids = userIds;
-    Axios.put('disable/deleteallusers/false', payload).then((res) => {
+    Axios.put('enabledisable/multiuser/false', payload).then((res) => {
       if (res.status == 200) {
         toast.success("Users deleted successfully")
         this.getAllUsers();
@@ -140,7 +138,7 @@ export default class User extends Component {
             <Button color="success" className="deleteAllUserStyles" onClick={() => this.deleteAllUsers()}>Delete All Users</Button>
             : null}</div>
         <Card style={{ width: "90%", padding: "15px" }}>
-          <span className="createcases_Style_B" size="large" > {" "} Users</span>
+          <span className="createuser_Style_B" size="large" > {" "} Users</span>
           <BootstrapTable data={this.state.users} selectRow={this.selectRow} hover striped>
             <TableHeaderColumn dataField='userId' width='260px' isKey={true}>User ID</TableHeaderColumn>
             <TableHeaderColumn dataField='firstName' width='180px' >First Name</TableHeaderColumn>
@@ -148,7 +146,7 @@ export default class User extends Component {
             <TableHeaderColumn dataField='dob' width='180px' dataFormat={this.dateOfBirth}>Dob</TableHeaderColumn>
             <TableHeaderColumn dataField='gender' width='180px'>Gender</TableHeaderColumn>
             <TableHeaderColumn dataField='email' width='180px'>Email</TableHeaderColumn>
-            <TableHeaderColumn dataField="mobileNumber" width='180px'>Mobile</TableHeaderColumn>
+            <TableHeaderColumn dataField="mobileNumber" width='180px'>Mobile Number</TableHeaderColumn>
             <TableHeaderColumn width="100px" dataFormat={this.actions}>Actions</TableHeaderColumn>
           </BootstrapTable> </Card>
 

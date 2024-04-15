@@ -1,15 +1,6 @@
 export default {
   items: [
     {
-      name: 'Dashboard',
-      url: '/dashboard',
-      icon: 'icon-speedometer',
-      badge: {
-        variant: 'info',
-        text: 'NEW',
-      },
-    },
-    {
       name: "User",
       url: "/user",
       icon: "fa fa-institution",
@@ -28,25 +19,6 @@ export default {
       name: "Deleted Users",
       url: "/deleteuser",
       icon: "fa fa-institution",
-    },
-   
-   
-    // {
-    //   name: 'Pages',
-    //   url: '/pages',
-    //   icon: 'icon-star',
-    //   children: [
-    //     {
-    //       name: 'Login',
-    //       url: '/login',
-    //       icon: 'icon-star',
-    //     },
-    //     {
-    //       name: 'Register',
-    //       url: '/register',
-    //       icon: 'icon-star',
-    //     },
-    //   ],
-    // },
+    }
   ]
 };

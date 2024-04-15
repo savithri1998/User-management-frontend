@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Badge, UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav, NavItem } from 'reactstrap';
+import {UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { Icon } from "semantic-ui-react";
-import { AppAsideToggler, AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
+import {  AppSidebarToggler } from '@coreui/react';
 import 'semantic-ui-css/semantic.min.css';
 
 
@@ -23,9 +22,6 @@ class DefaultHeader extends Component {
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
         <AppSidebarToggler className="d-md-down-none" display="lg" />
         <Nav className="ml-auto" navbar>
-          <NavItem className="d-md-down-none">
-            <NavLink to="#" className="nav-link"><i className="icon-bell"></i><Badge pill color="danger">5</Badge></NavLink>
-          </NavItem>
           <UncontrolledDropdown nav direction="down">
             <UncontrolledDropdown nav direction="down">
               <DropdownToggle nav>

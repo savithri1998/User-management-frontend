@@ -48,7 +48,7 @@ export default class SearchUser extends Component {
                     <Col md={5}>
                         <Dropdown className='dropdown-colmun' toggle={() => this.setState({ isOpen: !this.state.isOpen })} isOpen={this.state.isOpen}>
                             <DropdownToggle className='searchDropdown'>
-                                <Input className='searchInFilter' onChange={(e) => this.searchData(e.target.value)} value={this.state.searchInput} name="searchInput" placeholder="Search with name, id" />
+                                <Input className='searchInFilter' onChange={(e) => this.searchData(e.target.value)} value={this.state.searchInput} name="searchInput" placeholder="Search with user name, userid" />
                                 <Icon name="close" className="searchAdmissionCloseIcon" onClick={this.handleCancel}></Icon>
                             </DropdownToggle>
                             {this.state.fetchedItems && this.state.fetchedItems.length > 0 &&
@@ -75,12 +75,12 @@ export default class SearchUser extends Component {
                 </Row><br /><br />
                 <Row>
                     {this.state.userDetails && <Card>
-                        <CardHeader>Search User</CardHeader>
-                        <CardBody>userId : {this.state.userDetails ? this.state.userDetails.userId : ""}<br />
-                            First Name : {this.state.userDetails ? this.state.userDetails.firstName : ""}<br />
-                            Last Name : {this.state.userDetails ? this.state.userDetails.lastName : ""}<br />
-                            Dob : {this.state.userDetails ? moment(this.state.userDetails.dob).format("YYYY-MM-DD") : ""}<br />
-                            Gender : {this.state.userDetails ? this.state.userDetails.gender : ""}<br />
+                        <CardHeader>User Details</CardHeader>
+                        <CardBody>UserId :  {this.state.userDetails ? this.state.userDetails.userId : ""}<br />
+                            First Name :  {this.state.userDetails ? this.state.userDetails.firstName : ""}<br />
+                            Last Name :  {this.state.userDetails ? this.state.userDetails.lastName : ""}<br />
+                            Dob :  {this.state.userDetails ? moment(this.state.userDetails.dob).format("YYYY-MM-DD") : ""}<br />
+                            Gender :  {this.state.userDetails ? this.state.userDetails.gender : ""}<br />
                             Mobile Number : {this.state.userDetails ? this.state.userDetails.mobileNumber : ""}<br />
                             Address : {this.state.userDetails ? this.state.userDetails.address : ""}</CardBody>
                     </Card>}

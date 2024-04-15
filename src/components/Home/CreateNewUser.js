@@ -25,16 +25,17 @@ export default class CreateNewUser extends Component {
     componentDidMount() {
         if (this.state.id != "new") {
             Axios.get(`/user/getById/${this.state.id}`).then((res) => {
-                const resData = res.data;
-                this.setState({
-                    firstName: resData.firstName,
-                    lastName: resData.lastName,
-                    dob: moment(resData.dob).format("YYYY-MM-DD"),
-                    email: resData.email,
-                    mobileNumber: resData.mobileNumber,
-                    address: resData.address,
-                    gender: resData.gender ? { value: resData.gender, label: resData.gender } : null
-                })
+                if (res.status === 200) {
+                    this.setState({
+                        firstName: res.data.firstName,
+                        lastName: res.data.lastName,
+                        dob: moment(res.data.dob).format("YYYY-MM-DD"),
+                        email: res.data.email,
+                        mobileNumber: res.data.mobileNumber,
+                        address: res.data.address,
+                        gender: res.data.gender ? { value: res.data.gender, label: res.data.gender } : null
+                    })
+                }
             })
         }
     }
@@ -89,7 +90,7 @@ export default class CreateNewUser extends Component {
     render() {
         return (
             <>
-                <Grid className="createcases_Style_A" >
+                <Grid >
                     <ToastContainer />
                     <Grid.Row >
                         <Grid.Column  >
@@ -100,14 +101,14 @@ export default class CreateNewUser extends Component {
                                 onSubmit={this.onSubmit}>
                                 {({ values, setFieldValue }) => (
                                     <>
-                                        <span className="createcases_Style_B" size="large" >
-                                            {" "} {this.state.id === "new" ? "CREATE CASES" : "UPDATE CASES"}
+                                        <span className="createuser_Style_B" size="large" >
+                                            {" "} {this.state.id === "new" ? "CREATE NEW USER" : "UPDATE USER"}
                                         </span>
                                         <Card style={{ width: "100%" }}>
                                             <Form><br />
                                                 <div>
                                                     <Grid columns='equal' stackable >
-                                                        <Grid.Row className="createcases_Style_C">
+                                                        <Grid.Row className="createuser_Style_C">
                                                             <Grid.Column>
                                                                 <Label>First Name</Label>
                                                                 <Input type="text" name="firstName" tag={Field} className="inputStyle" placeholder="Enter first name"></Input>
@@ -122,7 +123,7 @@ export default class CreateNewUser extends Component {
                                                     </Grid>
 
                                                     <Grid columns='equal' stackable >
-                                                        <Grid.Row className="createcases_Style_C">
+                                                        <Grid.Row className="createuser_Style_C">
                                                             <Grid.Column>
                                                                 <Label>DOB</Label>
                                                                 <Input type="date" name="dob" tag={Field} className="inputStyle" placeholder="Enter date of birth"></Input>
@@ -137,7 +138,7 @@ export default class CreateNewUser extends Component {
                                                         </Grid.Row>
                                                     </Grid>
                                                     <Grid columns='equal' stackable >
-                                                        <Grid.Row className="createcases_Style_C">
+                                                        <Grid.Row className="createuser_Style_C">
                                                             <Grid.Column>
                                                                 <Label>Email</Label>
                                                                 <Input type="text" name="email" tag={Field} className="inputStyle" placeholder="Enter email id"></Input>
@@ -151,7 +152,7 @@ export default class CreateNewUser extends Component {
                                                         </Grid.Row>
                                                     </Grid>
                                                     <Grid columns='equal' stackable >
-                                                        <Grid.Row className="createcases_Style_C">
+                                                        <Grid.Row className="createuser_Style_C">
                                                             <Grid.Column>
                                                                 <Label>Full Address</Label><br />
                                                                 <Field component="textarea" name="address" rows="2" className="inputStyle" placeholder="Enter address"></Field>

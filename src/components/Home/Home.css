@@ -4,7 +4,7 @@
   .inputStyle{
     width: 400px;
 }
-.createcases_Style_C{
+.createuser_Style_C{
   margin-left: 30px;
 }
 .bunstyle{
@@ -68,4 +68,12 @@
 }
 .deleteAllUserStyles{
 float: right !important;
+}
+.createuser_Style_B{
+  color: rgb(33, 133, 208, 1);
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+  width: auto;
+  margin-bottom: 15px;
 }

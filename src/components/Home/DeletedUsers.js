@@ -5,20 +5,15 @@ import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from "../../AxiosConfig/config";
-import Swal from "sweetalert2";
 import { Row, Button } from 'reactstrap';
 import { AppSwitch } from "@coreui/react";
-import Pagination from "rc-pagination";
 import "rc-pagination/assets/index.css";
 import moment from 'moment';
-import localeInfo from "rc-pagination/lib/locale/en_US";
 import "./Home.css";
 
 export default class DeletedUsers extends Component {
   state = {
     users: [],
-    currentPage: 1,
-    totalDocs: "0",
     selectedRows: []
   }
   componentDidMount() {
@@ -26,11 +21,11 @@ export default class DeletedUsers extends Component {
   }
   dateOfBirth = (cell, row) => {
     const formattedDate = moment(cell).format('YYYY-MM-DD');
-    return formattedDate
+    return formattedDate;
   }
   getAllUsers = () => {
     Axios.get("user/getAll/false").then((res) => {
-      if (res.status == 200) {
+      if (res.status === 200) {
         this.setState({
           users: res.data
         })
@@ -47,13 +42,13 @@ export default class DeletedUsers extends Component {
   }
   studentAdmissionStatusUpdate = (data) => {
     data.status = !data.status;
-    Axios.delete(`user/delete/${data && data.userId}/true`).then(response => {
+    Axios.delete(`enabledisable/singleuser/${data && data.userId}/true`).then(response => {
       if (response.status === 200) {
         toast.info(`User status updated successfully`);
         this.getAllUsers();
       }
     }).catch((e) => {
-      toast.error("Unable to get admissions")
+      toast.error("Unable to get admissions");
     })
   }
 
@@ -101,7 +96,7 @@ export default class DeletedUsers extends Component {
     })
     let payload = {};
     payload.ids = userIds;
-    Axios.put('disable/deleteallusers/true', payload).then((res) => {
+    Axios.put('enabledisable/multiuser/true', payload).then((res) => {
       if (res.status == 200) {
         toast.success("Users deleted successfully")
         this.getAllUsers();
@@ -127,7 +122,7 @@ export default class DeletedUsers extends Component {
             <Button color="success" className="deleteAllUserStyles" onClick={() => this.deleteAllUsers()}>Delete All Users</Button>
             : null}</div>
         <Card style={{ width: "90%", padding: "15px" }}>
-          <span className="createcases_Style_B" size="large" > {" "} Users</span>
+          <span className="createuser_Style_B" size="large" > {" "} Deleted Users</span>
           <BootstrapTable data={this.state.users} selectRow={this.selectRow} hover striped>
             <TableHeaderColumn dataField='userId' width='260px' isKey={true}>User ID</TableHeaderColumn>
             <TableHeaderColumn dataField='firstName' width='180px' >First Name</TableHeaderColumn>

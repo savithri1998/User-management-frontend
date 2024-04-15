@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import * as Yup from "yup";
 import { Button, Input,Label } from 'reactstrap';
 import { Card, CardBody, CardGroup, Col, Container, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
-import Axios from '../../../AxiosConfig/config';
-import "./style.css";
-import Swal from 'sweetalert2';
 
 
 
@@ -16,38 +13,9 @@ class Login extends Component {
     password: ""
   }
   onSubmit = (e) => {
-    let payload = {
-      email: e.Username,
-      password: e.password
-    }
-    // Axios.post('/user/authenticate', payload).then((res) => {
-    //   if(res.data.status==200){
-    //     let token=res.data.token.split(" ");
-    //     token=token[1];
-    //     setCookie('token', token, 1);
-    //     // localStorage.setItem("token",token);
-    //     // localStorage.setItem('userId', res.data.user.userRoleId);
-    //     setCookie('userId',res.data.user.userRoleId , 1);
-    //     Swal.fire({
-    //       position: 'center',
-    //       icon: 'success',
-    //       title: 'Login Successful',
-    //       showConfirmButton: false,
-    //       timer: 1500
-    //     })
-    //     this.props.history.push('/dashboard');
-    //   }else{
-    //     if(res.data.status==400){
-    //       Swal.fire({
-    //         icon: 'warning',
-    //         text: "Authentication failed. Please check your Email/password.!",
-    //       })
-    //     }
-    //   }
-    // }).catch = ((err) => {
-    //   console.log("err",err);
-    // })
-    this.props.history.push('/dashboard');
+    console.log("e",e);
+    localStorage.setItem("user",e.Username);
+    this.props.history.push('/user');
   }
   schema = () => {
     return Yup.object().shape({
